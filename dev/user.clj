@@ -11,20 +11,20 @@
 (defmethod fmap ListF
   [f fa]
   (match-adt fa
-    (cons* a as) (bind (more #(f as)) (comp done (partial cons* a)))
-    (done fa)))
+             (cons* a as) (bind (more #(f as)) (comp done (partial cons* a)))
+             (done fa)))
 
 (defn length-alg
   [l]
   (match-adt l
-    (cons* a as) (inc as)
-    0))
+             (cons* a as) (inc as)
+             0))
 
 (defn product-alg
   [l]
   (match-adt l
-    (cons* a as) (* a as)
-    1))
+             (cons* a as) (* a as)
+             1))
 
 (defn range-coalg
   [n]
