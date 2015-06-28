@@ -1,5 +1,6 @@
 (ns clj-recursion-schemes.core
-  (:require [clj-monad-trampoline.core :refer [done bind run-tramp]]))
+  (:require [clj-free.core :refer [done bind]]
+            [clj-free.trampoline :refer [run-trampoline]]))
 
 (defmulti fmap
   "Slightly non-standard fmap using trampline.
@@ -13,7 +14,7 @@
 
 (defn cata
   [alg fa]
-  (run-tramp (cata* (comp done alg) fa)))
+  (run-trampoline (cata* (comp done alg) fa)))
 
 (defn ana*
   [coalg a]
@@ -21,7 +22,7 @@
 
 (defn ana
   [coalg a]
-  (run-tramp (ana* (comp identity coalg) a)))
+  (run-trampoline (ana* (comp identity coalg) a)))
 
 (defn hylo
   [alg coalg a]
