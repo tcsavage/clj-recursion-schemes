@@ -8,7 +8,7 @@
   {:arglists '([f fa])}
   (fn [f fa] (type fa)))
 
-(defn cata*
+(defn ^:no-doc cata*
   [alg fa]
   (bind (fmap (partial cata* alg) fa) alg))
 
@@ -16,7 +16,7 @@
   [alg fa]
   (run-trampoline (cata* (comp done alg) fa)))
 
-(defn ana*
+(defn ^:no-doc ana*
   [coalg a]
   (fmap (partial ana* coalg) (coalg a)))
 
@@ -27,3 +27,11 @@
 (defn hylo
   [alg coalg a]
   (cata alg (ana coalg a)))
+
+(defn ^:no-doc para*
+  [alg fa]
+  (bind (fmap (juxt (partial para* alg) identity) fa) alg))
+
+(defn para
+  [alg fa]
+  (run-trampoline (para* (comp done alg) fa)))
