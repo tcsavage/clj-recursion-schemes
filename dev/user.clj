@@ -1,6 +1,6 @@
 (ns user
   (:require [clojure.tools.namespace.repl :refer [refresh]]
-            [clj-mogensen-scott.core :refer [defadt match-adt]]
+            [clj-scott-adts.core :refer [defadt match-adt]]
             [clj-free.core :refer [done more bind]]
             [clj-free.trampoline :refer [run-trampoline]]
             [clj-recursion-schemes.core :refer [fmap cata ana hylo]]))
